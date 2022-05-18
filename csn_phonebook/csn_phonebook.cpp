@@ -29,13 +29,15 @@ void write_archive() {
 void new_entry(char* name, char* number) {
     printf("The Name was %s, the Number was %s\n", name, number);
 
+    // TODO(dgl): Hier die übergebenen Daten in die Datei schreiben
+
 };
 void list_all() {
-
+    // TODO(dgl): Hier die Datei Zeile für Zeile lesen und mit printf ausgeben.
 
 };
 void search_entry(char* name) {
-
+    // TODO(dgl): Hier ebenfalls die Datei Zeile für Zeile lesen und mit printf ausgeben.
 };
 
 int main(void)
@@ -61,12 +63,16 @@ int main(void)
             system("cls");
             char Name[255], Number[255], LastName[255];
 
+            // TODO(dgl): Das alles mit dem File in die new_entry Funktion verschieben, sodass
+            // hier nur der Name, Lastname und Phonenumber mit scanf abgefragt werden.
+            // Die new_entry Funktion müsstest du dann noch erweitern, dass auch der Lastname übergeben werden kann.
+            // also new_entry(char* name, char* lastname, char* number)
             FILE* fp;
             char ch;
             fp = fopen_s("daten.txt", "w");
             if (fp == NULL)
 
-                printf("Enter the Name: ");
+            printf("Enter the Name: ");
             scanf_s("%254s", Name, 255);
             scanf_s("%254s", LastName, 255);
             fprintf(fp, "Name = %254s", Name);
@@ -86,22 +92,13 @@ int main(void)
             system("cls");
 
             printf("Saved Successfully!\n\n");
-
-
-
-            // TODO(dgl):
-            // Erstelle eine Funktion new_entry(char *name, char *number), die hier aufgerufen wird.
         }
         else if (input == 2) {
             system("cls");
             printf("\t\t\t\t\t============PHONELIST============\n");
+
+            // TODO(dgl): um die Funktion aufzurufen musst du noch die Klammern angeben, also list_all();
             list_all;
-
-
-
-
-            // TODO(dgl):
-            // Erstelle eine Funktion list_all(), die hier aufgerufen wird.
         }
         else if (input == 3) {
             system("cls");
@@ -112,7 +109,7 @@ int main(void)
             scanf_s("%254s", LastName, 255);
 
             // TODO(dgl):
-            // Erstelle eine Funktion search_entry(char *name), die hier aufgerufen wird.
+            // Die search_entry Funktion hier aufrufen. Diese muss dann auch um den LastName Parameter erweitert werden.
         }
         else if (input == 4) {
             printf("Press any Key to leave");
