@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define size 1
 
 // NOTE(dgl): das ist eine Forward Declaration. Diese ist notwendig, wenn die write_archive Funktion im Code nach der main Funktion stehen würde.
@@ -26,11 +27,18 @@ void write_archive() {
     printf("Das ist die Write Archive Funktion\n");
 };
 void new_entry(char* name, char* number) {
-    printf("The Name was %s, the Number was %s", name, number);
+    printf("The Name was %s, the Number was %s\n", name, number);
+
+};
+void list_all() {
+
+
+};
+void search_entry(char* name) {
 
 };
 
-int main()
+int main(void)
 {
 
     //     struct Daten Daten1 = { "Philipp Perez", 18 };
@@ -51,17 +59,33 @@ int main()
 
         if (input == 1) {
             system("cls");
-            char Name[255], Number[255];
+            char Name[255], Number[255], LastName[255];
 
-            printf("Enter the Name: ");
-            scanf_s("%s", Name);
+            FILE* fp;
+            char ch;
+            fp = fopen_s("daten.txt", "w");
+            if (fp == NULL)
+
+                printf("Enter the Name: ");
+            scanf_s("%254s", Name, 255);
+            scanf_s("%254s", LastName, 255);
+            fprintf(fp, "Name = %254s", Name);
+            fprintf(fp, "LastName = %254s", LastName);
 
             fflush(stdin);
 
             printf("Enter Phonenumber: ");
-            scanf_s("%s", Number);
+            scanf_s("%254s", Number, 255);
+            fprintf(fp, "Number = %254s", Number);
+
 
             new_entry(Name, Number);
+
+            fclose(fp);
+
+            system("cls");
+
+            printf("Saved Successfully!\n\n");
 
 
 
@@ -69,10 +93,24 @@ int main()
             // Erstelle eine Funktion new_entry(char *name, char *number), die hier aufgerufen wird.
         }
         else if (input == 2) {
+            system("cls");
+            printf("\t\t\t\t\t============PHONELIST============\n");
+            list_all;
+
+
+
+
             // TODO(dgl):
             // Erstelle eine Funktion list_all(), die hier aufgerufen wird.
         }
         else if (input == 3) {
+            system("cls");
+            char Name[255], LastName[255];
+
+            printf("Enter the Name: ");
+            scanf_s("%254s", Name, 255);
+            scanf_s("%254s", LastName, 255);
+
             // TODO(dgl):
             // Erstelle eine Funktion search_entry(char *name), die hier aufgerufen wird.
         }
