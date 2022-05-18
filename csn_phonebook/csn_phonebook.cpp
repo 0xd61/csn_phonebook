@@ -25,9 +25,9 @@ struct Daten
 void write_archive() {
     printf("Das ist die Write Archive Funktion\n");
 };
-char new_entry(char* name, int* number) {
+void new_entry(char* name, char* number) {
+    printf("The Name was %s, the Number was %s", name, number);
 
-    return 0;
 };
 
 int main()
@@ -51,12 +51,18 @@ int main()
 
         if (input == 1) {
             system("cls");
-            char Name, Number, Wrote;
+            char Name[255], Number[255];
 
             printf("Enter the Name: ");
-            scanf_s("%s %s", &Name, Number);
+            scanf_s("%s", Name);
+
+            fflush(stdin);
+
+            printf("Enter Phonenumber: ");
+            scanf_s("%s", Number);
+
             new_entry(Name, Number);
-            printf("Wrote = % s", Wrote);
+
 
 
             // TODO(dgl):
@@ -82,4 +88,3 @@ int main()
     return 0;
 
 }
-
