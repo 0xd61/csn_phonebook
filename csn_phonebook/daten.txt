@@ -1,1 +1,3 @@
-Name =                                                                                                                                                                                                                                                        PhilippLastName =                                                                                                                                                                                                                                                          PerezNumber =                                                                                                                                                                                                                                                     0983889101
+Name: Philipp, LastName: Perez, Number: 0983889101
+Name: Tim, LastName: Hubert, Number: 445544545
+Name: Daniel, LastName: Glinka, Number: 09834458264
