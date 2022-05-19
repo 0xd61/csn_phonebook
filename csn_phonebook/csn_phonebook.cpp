@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define size 1
 struct Daten
 {
@@ -17,10 +18,7 @@ void write_archive() {
 void new_entry(char* Name, char* LastName, char* Number) {
     FILE* fp;
     char ch;
-    // NOTE(dgl): Ich hab das hier noch auf a+ geändert. Dann wird der Text immer in der Datei angehängt
-    // und das, was bereits in der Datei steht nicht überschrieben.
     fp = fopen("daten.txt", "a+");
-    // NOTE(dgl): Hier fehlte die {} Ansonsten gilt das nur für die erste Zeile nach dem if
     if (fp != NULL) {
         fprintf(fp, "Name: %s, ", Name);
         fprintf(fp, "LastName: %s, ", LastName);
@@ -28,10 +26,8 @@ void new_entry(char* Name, char* LastName, char* Number) {
         fclose(fp);
         printf("The Name was %s, the Number was %s\n", Name, Number);
     }
-    // TODO(dgl): Hier die übergebenen Daten in die Datei schreiben
 };
 void list_all() {
-    // TODO(dgl): Hier die Datei Zeile für Zeile lesen und mit printf ausgeben.
     FILE* the_file = fopen("daten.txt", "r");
     if (the_file == NULL) {
         perror("Unable to open the File");
@@ -70,6 +66,33 @@ void search_entry(char* name, char* str) {
 
     }
 };
+void delete_entry(char *name, char *str) {
+    FILE* fp;
+    int line_num = 1;
+    int find_result = 0;
+    char temp[512];
+    if ((fopen_s(&fp, "daten.txt", "r")) != NULL) {
+        return;
+    }
+    while (fgets(temp, 255, fp) != NULL) {
+        if ((strstr(temp, str)) != NULL) {
+            printf("A match found on line: %d\n", line_num);
+            printf("\n%s\n", temp);
+            find_result++;
+        }
+        line_num++;
+    }
+    if (find_result == 0) {
+        printf("\nSorry, couldn't find a match.\n");
+    }
+
+    if (fp) {
+        fclose(fp);
+    }
+    remove();
+};
+
+
 int main(void)
 {
     //     struct Daten Daten1 = { "Philipp Perez", 18 };
@@ -80,7 +103,8 @@ int main(void)
         printf("\t\t 1) New Entry\n");
         printf("\t\t 2) List\n");
         printf("\t\t 3) Search\n");
-        printf("\t\t 4) Exit\n\n");
+        printf("\t\t 4) Delete Person\n");
+        printf("\t\t 5) Exit\n\n");
         int input = 0;
         printf("What do you want to do? [1-4]: ");
         scanf("%d", &input);
@@ -146,6 +170,15 @@ int main(void)
             // Die search_entry Funktion hier aufrufen. Diese muss dann auch um den LastName Parameter erweitert werden.
         }
         else if (input == 4) {
+            system("cls");
+            char Name[255], LastName[255];
+            printf("Enter the Name: ");
+            scanf("%s", Name);
+            scanf("%s", LastName);
+
+            delete_entry(Name, LastName);
+        }
+        else if (input == 5) {
             printf("Press any Key to leave");
             return 0;
         }
