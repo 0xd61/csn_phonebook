@@ -19,14 +19,20 @@ void write_archive() {
 void new_entry(char* Name, char* LastName, char* Number) {
     FILE* fp;
     char ch;
-    fp = fopen("daten.txt", "w+");
-    if (fp == NULL)
-        fprintf(fp, "Name = %254s", Name);
-    fprintf(fp, "LastName = %254s", LastName);
-    fprintf(fp, "Number = %254s", Number);
-    fclose(fp);
-    printf("The Name was %s, the Number was %s\n", Name, Number);
 
+    // NOTE(dgl): Ich hab das hier noch auf a+ geändert. Dann wird der Text immer in der Datei angehängt
+    // und das, was bereits in der Datei steht nicht überschrieben.
+    fp = fopen("daten.txt", "a+");
+
+    // NOTE(dgl): Hier fehlte die {} Ansonsten gilt das nur für die erste Zeile nach dem if
+    if (fp != NULL) {
+        fprintf(fp, "Name: %s, ", Name);
+        fprintf(fp, "LastName: %s, ", LastName);
+        fprintf(fp, "Number: %s\n", Number);
+        fclose(fp);
+
+        printf("The Name was %s, the Number was %s\n", Name, Number);
+    }
 
 
     // TODO(dgl): Hier die übergebenen Daten in die Datei schreiben
@@ -66,6 +72,10 @@ int main(void)
             new_entry(Name, LastName, Number);
             printf("Enter the Name: ");
             scanf_s("%254s", Name, 255);
+
+            fflush(stdin);
+
+            printf("Enter the LastName: ");
             scanf_s("%254s", LastName, 255);
 
             fflush(stdin);
