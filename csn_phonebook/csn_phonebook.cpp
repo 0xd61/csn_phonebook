@@ -62,7 +62,9 @@ int main(void)
         scanf_s("%d", &input);
         if (input == 1) {
             system("cls");
-            char Name[255], Number[255], LastName[255];
+            char Name[255] = {};
+            char Number[255] = {};
+            char LastName[255] = {};
 
             // TODO(dgl): Das alles mit dem File in die new_entry Funktion verschieben, sodass
             // hier nur der Name, Lastname und Phonenumber mit scanf abgefragt werden.
