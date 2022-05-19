@@ -59,7 +59,7 @@ int main(void)
         printf("\t\t 4) Exit\n\n");
         int input = 0;
         printf("What do you want to do? [1-4]: ");
-        scanf_s("%d", &input);
+        scanf("%d", &input);
         if (input == 1) {
             system("cls");
             char Name[255] = {};
@@ -71,19 +71,18 @@ int main(void)
             // Die new_entry Funktion müsstest du dann noch erweitern, dass auch der Lastname übergeben werden kann.
             // also new_entry(char* name, char* lastname, char* number)
 
-            new_entry(Name, LastName, Number);
             printf("Enter the Name: ");
-            scanf_s("%254s", Name, 255);
+            scanf("%s", Name);
 
             fflush(stdin);
 
             printf("Enter the LastName: ");
-            scanf_s("%254s", LastName, 255);
+            scanf("%s", LastName);
 
             fflush(stdin);
 
             printf("Enter Phonenumber: ");
-            scanf_s("%254s", Number, 255);
+            scanf("%s", Number);
 
             new_entry(Name, LastName, Number);
 
@@ -102,8 +101,8 @@ int main(void)
             system("cls");
             char Name[255], LastName[255];
             printf("Enter the Name: ");
-            scanf_s("%254s", Name, 255);
-            scanf_s("%254s", LastName, 255);
+            scanf("%s", Name);
+            scanf("%s", LastName);
 
             // TODO(dgl):
             // Die search_entry Funktion hier aufrufen. Diese muss dann auch um den LastName Parameter erweitert werden.
